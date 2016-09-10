@@ -1,0 +1,33 @@
+def KMPfun(text,pattern):
+	i=0
+	j=0
+	array=findarray(pattern)
+	while(i<len(text) and j< len(pattern)):
+		if(text[i]==pattern[j]):
+			i+=1
+			j+=1
+		else:
+			if j!=0:
+				j=array[j-1]
+			else:
+				i+=1
+		if(j==len(pattern)):
+			return True
+	return False
+
+def findarray(pattern):
+	array=[0]*len(pattern)
+	index=0
+	i=1
+	while(i<len(pattern)):
+		if pattern[i]== pattern[index]:
+			array[i]=index+1
+			i+=1
+			index+=1			
+		else:
+			if(index!=0):
+				index=array[index-1]
+			else:
+				array[i]=0
+				i+=1			
+	return array
